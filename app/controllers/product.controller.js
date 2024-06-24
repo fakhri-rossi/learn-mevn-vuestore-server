@@ -13,6 +13,13 @@ const findAll = (req, res) => {
         });
 }
 
+const showOne = async (req, res) => {
+    const { product_id } = req.params
+    const product = await Product.findOne({ _id: product_id });
+    res.send(product);
+}
+
 module.exports = {
-    findAll
+    findAll,
+    showOne
 };

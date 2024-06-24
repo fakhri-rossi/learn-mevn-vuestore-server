@@ -2,7 +2,6 @@ const db = require('../models');
 const Product = db.products;
 
 const findAll = (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     Product.find()
         .then((result) => {
             res.send(result)
@@ -17,7 +16,6 @@ const findAll = (req, res) => {
 const showOne = async (req, res) => {
     const { product_id } = req.params
     const product = await Product.findOne({ _id: product_id });
-    res.header('Access-Control-Allow-Origin', '*');
     res.send(product);
 }
 

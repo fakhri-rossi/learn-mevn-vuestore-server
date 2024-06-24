@@ -9,14 +9,14 @@ const findOrder = async (req, res) => {
 };
 
 const addToCart = async(req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     const user_id = Number(req.params.id);
     const product = String(req.body.product);
     const result = await Order.updateOne({user_id},{ 
         $addToSet: { cart_items: product } 
     });
 
-    res.header('Access-Control-Allow-Origin', '*');
-    res.send(result);
+    // res.send(result);
 }
 
 const removeFromCart = async(req, res) => {

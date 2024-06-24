@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
 const PORT = process.env.PORT || 8000;
 
+app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/img', express.static(path.join(__dirname, './public/img')));
@@ -25,8 +27,8 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api/products', require('./app/routes/product.route'));
-app.use('/api/orders', require('./app/routes/order.route'));
+app.use('/api/products', cors(), require('./app/routes/product.route'));
+app.use('/api/orders', cors(), require('./app/routes/order.route'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://127.0.0.1:${PORT}`);

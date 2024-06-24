@@ -7,6 +7,17 @@ const findOrder = async (req, res) => {
     res.send(order);
 };
 
+const addToCart = async(req, res) => {
+    const user_id = Number(req.params.id);
+    const product = String(req.body.product);
+    const result = await Order.updateOne({user_id},{ 
+        $addToSet: { cart_items: product } 
+    });
+
+    res.send(result);
+}
+
 module.exports = {
-    findOrder
+    findOrder,
+    addToCart
 }

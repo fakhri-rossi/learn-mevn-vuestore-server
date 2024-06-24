@@ -17,7 +17,18 @@ const addToCart = async(req, res) => {
     res.send(result);
 }
 
+const removeFromCart = async(req, res) => {
+    const user_id = Number(req.params.id);
+    const product = String(req.params.product);
+    const result = await Order.updateOne({user_id},{ 
+        $pull: { cart_items: product } 
+    });
+
+    res.send(result);
+}
+
 module.exports = {
     findOrder,
-    addToCart
+    addToCart,
+    removeFromCart
 }

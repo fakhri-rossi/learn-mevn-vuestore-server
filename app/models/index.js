@@ -6,6 +6,6 @@ mongoose.Promise = global.Promise;
 const db = {}
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.products = require('../models/product.model')(mongoose);
+db.products = require('../models/product.model');
 
 module.exports = db;

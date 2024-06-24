@@ -1,19 +1,14 @@
-module.exports = mongoose => {
-    const schema = mongoose.Schema({
-        code: String,
-        name: String,
-        price: Number,
-        description: String,
-        imageUrl: String,
-        averageRating: Number
-    });
+const mongoose = require('mongoose');
 
-    schema.method("toJSON", function () {
-        const {__v, _id, ...object} = this.toObject();
-        object.id = _id;
-        return object;
-    });
+const productSchema = mongoose.Schema({
+    code: String,
+    name: String,
+    price: Number,
+    description: String,
+    imageUrl: String,
+    averageRating: Number
+});
 
-    const Product = mongoose.model('products', schema);
-    return Product;
-}
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;
